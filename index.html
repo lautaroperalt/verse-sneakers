@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÉRSE | Catálogo G5</title>
+    <meta name="referrer" content="no-referrer">
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">VÉRSE</a>
+            <div class="ms-auto d-flex align-items-center text-white small">
+                <a href="https://wa.me/5493416460980" target="_blank" class="text-white text-decoration-none border border-secondary rounded-pill px-3 py-1 btn-contact-nav">
+                    <i class="bi bi-whatsapp me-1"></i> Contacto
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Catálogo 2026</h1>
+            <p class="lead text-secondary fs-6">Sneakers Calidad G5</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mb-5">
+        <div class="controls-section shadow-lg">
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text bg-black border-dark text-secondary"><i class="bi bi-search"></i></span>
+                        <input type="text" id="searchInput" class="form-control search-box" placeholder="Buscar modelo o marca...">
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="filters-container" id="filtersContainer">
+                        <button class="btn btn-filter text-warning border-warning" id="btnInfo" style="border-width: 2px;">
+                            <i class="bi bi-info-circle-fill me-1"></i>Info y Talles
+                        </button>
+                        
+                        <button class="btn btn-filter active" data-filter="all">Todos</button>
+                        <button class="btn btn-filter" data-filter="Adidas">Adidas</button>
+                        <button class="btn btn-filter" data-filter="Nike">Nike</button>
+                        <button class="btn btn-filter" data-filter="Vans">Vans</button>
+                        <button class="btn btn-filter" data-filter="Puma">Puma</button>
+                        <button class="btn btn-filter" data-filter="NB">New Balance</button>
+                        <button class="btn btn-filter" data-filter="DC">DC</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRILLA DE INFORMACIÓN -->
+        <div class="row g-4 justify-content-center d-none" id="infoGrid">
+            <div class="col-12 col-md-6 text-center">
+                <!-- Guía de Talles -->
+                <img src="https://i.postimg.cc/vcBJqz16/image1.png" alt="Guía de Talles" class="img-fluid rounded shadow-lg border border-secondary" style="max-height: 75vh; object-fit: contain;">
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <!-- Preguntas Frecuentes -->
+                <img src="https://i.postimg.cc/7f6FsVC3/image2.png" alt="Preguntas Frecuentes" class="img-fluid rounded shadow-lg border border-secondary" style="max-height: 75vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Grilla de Productos -->
+        <div class="row g-3" id="productGrid"></div>
+    </main>
+
+    <!-- MODAL DE PRODUCTO -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-modal">
+                <div class="modal-header border-bottom-dark">
+                    <h5 class="modal-title text-white fw-bold fs-6" id="modalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="modal-img-wrapper">
+                        <img src="" id="modalImage" class="img-fluid rounded mb-3 shadow-sm modal-main-img">
+                    </div>
+                    <div id="modalThumbnails" class="d-flex justify-content-center gap-2 mb-4"></div>
+                    
+                    <div class="bg-black p-3 rounded d-flex justify-content-between align-items-center border border-dark mb-2">
+                        <div class="text-start">
+                            <small class="text-muted d-block" style="font-size: 0.65rem; letter-spacing: 1px;">MINORISTA</small>
+                            <span class="h5 text-white mb-0 fw-bold" id="modalRetail"></span>
+                        </div>
+                        <div class="text-end border-start ps-3 border-secondary">
+                            <small class="text-success d-block fw-bold" style="font-size: 0.65rem; letter-spacing: 1px;">MAYORISTA</small>
+                            <span class="h4 text-success mb-0 fw-bold" id="modalWholesale"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button onclick="sendToWhatsapp()" class="btn btn-success w-100 fw-bold py-3 btn-buy">
+                        PEDIR AHORA <i class="bi bi-whatsapp ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/5493416460980" class="float-wa pulse-animation" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-5">
+        <p class="text-muted mb-2 small fw-bold">VÉRSE © 2026</p>
+        <div class="small text-secondary">
+            <i class="bi bi-geo-alt-fill me-1"></i> Rosario, Santa Fe
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
